@@ -30,19 +30,24 @@ best <- function(state, outcome){
   data<-na.omit(data.frame(data[["Hospital.Name"]],"Rate"=gsub("Not Available", NA, data[[b]])))
   
   ##Remove NA
-  data<-na.omit(data[,2])
-  
+  data<-na.omit(data$Rate)
+  names(data)<-c("Hospital","Rate")
   ##transform as numeric for classification
   data$Rate = as.numeric(as.character(data$Rate))
   
   ##sorting by name (should be done on exaequo only)
   data<-data[order(data[,1]),] 
   
-  ##search for the min in 30.Day.Death..Mortality
-  bb<-which.min(data$Rate)
+  ##old search for the min in 30.Day.Death..Mortality
+  ##old bb<-which.min(data$Rate)
+  ##old return result
+  ##old data[bb,1]
   
-  ##index<-which(data$Rate %in% min(data$Rate))
-  ##return result
-  data[bb,1]
+  ##data with min value
+  data<-data(which(data[,2] %in% min(data[,2])))
+  ##sorting by name (should be done on exaequo only)
+  data<-data[order(data[,1]),] 
+  data(1,1)
+  
 }
   
