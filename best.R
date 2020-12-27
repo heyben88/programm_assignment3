@@ -45,7 +45,7 @@ best <- function(state, outcome){
   ## Data with minimum value
   data<-data[which(data$Rate %in% min(data$Rate)),]
 
-  data<-data[order(data[,1]),] } #Alphabetic sort 
+  data<-data[order(data[,1]),]  #Alphabetic sort 
   
   #Result
   data[1,1]
