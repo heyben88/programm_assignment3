@@ -15,14 +15,18 @@ rankall <- function(outcome, num = "best") {
   ## shorten data to essential to lighten the space used for memory
   data=data[c(7,2,which(diseaseslist==disease))]
   names(data)[3]="Rate"
+
+  ##data<-data[ which(data$State=="AR"),]
   ##keep only useful data without na (not available replacement too)
   data[3]<-gsub("Not Available", NA, data[[3]])
   data<-na.omit(data,data$Rate)
   data$Rate = as.numeric(as.character(data$Rate))
-  
-            rankhospital_for_rankall <- function(data, num = "best") {
-              ##transform as numeric
-              
+  #print(names(data))
+  #print(head(data,50))
+  data<-data[order(data[,1]),]
+  print(tail(data))
+            rankhospital_for_rankall <- function(data, nums) {
+              ##sorting
               if (num=="worst") 
               {data<-data[order(-data$Rate,data[,2]),] } ##reverse sorting to take the worth, higher first
               else
@@ -37,7 +41,6 @@ rankall <- function(outcome, num = "best") {
   
   
   splitdata <- split(data, data$State)
-  a=lapply(splitdata, rankhospital_for_rankall)
-  print(head(a))
-}
-head(rankall("heart attack", 20), 10)
+  sol=lapply(splitdata, rankhospital_for_rankall,nums=num)
+  
+  }
