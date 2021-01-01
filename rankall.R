@@ -1,3 +1,8 @@
+#library(dplyr)
+
+#data_in_tbl<-tbl_df(data frame)
+
+
 rankall <- function(outcome, num = "best") {
   ##settle work folder as the one with the data
   setwd("C:/Users/pc/Documents/2 SEIMA/Benas/travail/data analysis/R projects/programm_assignment3")
